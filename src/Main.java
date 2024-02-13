@@ -1,13 +1,19 @@
-//import java.io.Console;
+import java.awt.*;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
+        String resetColor = "\u001B[0m";
+        String redColor = "\u001b[31m";
         Scanner reader = new Scanner(System.in);
-        System.out.println("What is the base size of the triangle");
-        double base = reader.nextDouble();
-        System.out.println("What is the height of the triangle");
-        double height = reader.nextDouble();
-        double area = base * height / 2;
-        System.out.println("the area of the triangle is " + area);
+        System.out.println("Target Row?");
+        int row = reader.nextInt();
+        System.out.println("Target Column?");
+        int column = reader.nextInt();
+        System.out.println("Deploy to:");
+        System.out.println(redColor + "(" + (row + 1) + ", " + column + ")" + resetColor);
+        System.out.println(redColor + "(" + (row - 1) + ", " + column + ")" + resetColor);
+        System.out.println(redColor + "(" + row + ", " + (column + 1) + ")" + resetColor);
+        System.out.println(redColor + "(" + row + ", " + (column - 1) + ")" + resetColor);
+        Toolkit.getDefaultToolkit().beep();
     }
 }
