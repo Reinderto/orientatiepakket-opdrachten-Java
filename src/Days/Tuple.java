@@ -1,3 +1,5 @@
+package Days;
+
 public class Tuple<X, Y>
 {
     public X Item1;
