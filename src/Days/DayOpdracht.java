@@ -22,6 +22,14 @@ public abstract class DayOpdracht {
         return  output;
     }
 
+    public int AskForOption(String question, Object[] options){
+        StringBuilder test = new StringBuilder(question);
+        for(int i = 0; i < options.length;i++){
+            test.append("\n ").append(i + 1).append(". ").append(options[i]);
+        }
+        return AskForNumberInRange(test.toString(), 1, options.length);
+    }
+
     public void ClearScreen()
     {
         for(int i = 0; i < 10; i++)
