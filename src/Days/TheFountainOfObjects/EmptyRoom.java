@@ -5,4 +5,9 @@ public class EmptyRoom extends Room{
     public String RoomDescription() {
         return "There is nothing interesting in this room";
     }
+
+    @Override
+    public String toString() {
+        return "         ";
+    }
 }

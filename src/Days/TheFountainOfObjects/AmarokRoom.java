@@ -1,24 +1,24 @@
 package Days.TheFountainOfObjects;
 
-public class PitRoom extends Room{
+public class AmarokRoom extends Room{
     @Override
     public String RoomDescription() {
-        return "this is a pit";
+        return "this is a amarok";
     }
 
     @Override
     public void OnEnterRoom(Day39 game) {
         game.gameIsActive = false;
-        System.out.println("You fell into a Pit!\nYou lose");
+        System.out.println("You have been eaten by a amarok!\nYou lose");
     }
 
     @Override
     public String AdjacentDescription() {
-        return "You feel a draft. There is a pit in a nearby room.";
+        return "You can smell the rotten stench of an amarok in a nearby room.";
     }
 
     @Override
     public String toString() {
-        return "   Pit   ";
+        return " amarok  ";
     }
 }

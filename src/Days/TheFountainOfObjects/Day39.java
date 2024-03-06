@@ -12,11 +12,14 @@ public class Day39 extends DayOpdracht {
     public int Row = 0;
     public int Column = 0;
     public Room[][] World;
-    public static int PitFrequency = 16;
+    public static int PitFrequency = 15;
+    public static int MaelstromFrequency = 37;
+    public static int AmarokFrequency = 32;
+    public int Size;
     @Override
     public void Run() {
-        int size = AskForNumberInRange("How big do you want the world to be? (min 4)", 4, 128);
-        GenerateWorld(size);
+        Size = AskForNumberInRange("How big do you want the world to be? (min 4)", 4, 128);
+        GenerateWorld(Size);
         Scanner reader = new Scanner(System.in);
         while (gameIsActive){
             System.out.println("You are in the room at (Row=" + Row + ", Column=" + Column + ").");
@@ -31,7 +34,14 @@ public class Day39 extends DayOpdracht {
             else {
                 System.out.println(World[Row][Column].OnInteract(action, this));
             }
-            System.out.println("----------------------------------------------------------------------------------");
+            System.out.println("----------------------------------------------------------------------------------------------------");
+        }
+        for(Room[] row : World){
+            System.out.print("|");
+            for (Room room : row){
+                System.out.print(" " + room + " |");
+            }
+            System.out.println("\n----------------------------------------------------------------------------------------------------");
         }
     }
 
@@ -53,7 +63,7 @@ public class Day39 extends DayOpdracht {
     }
 
     private boolean IsInWorld(int row, int column){
-        return row >= 0 && row < World.length && column >= 0 && column < World.length;
+        return row >= 0 && row < Size && column >= 0 && column < Size;
     }
 
     private void Move(String direction){
@@ -106,8 +116,14 @@ public class Day39 extends DayOpdracht {
             System.out.println("the fountain is at (Row=" + row + ", Column=" + column + ").");
             PlaceRoom(new FountainRoom(), row, column);
         }
-        for(int i = 0; i < World.length * World.length / PitFrequency;i++){
+        for(int i = 0; i <= World.length * World.length / PitFrequency;i++){
             PlaceRoom(new PitRoom());
+        }
+        for(int i = 0; i <= World.length * World.length / MaelstromFrequency;i++){
+            PlaceRoom(new MaelstromRoom());
+        }
+        for(int i = 0; i <= World.length * World.length / AmarokFrequency;i++){
+            PlaceRoom(new AmarokRoom());
         }
     }
 
@@ -115,8 +131,12 @@ public class Day39 extends DayOpdracht {
         Random rand = new Random();
         int row, column;
         do{
-            row = rand.nextInt(World.length-2) + 2;
-            column = rand.nextInt(World.length-2)+2;
+            row = rand.nextInt(World.length);
+            if(row <= 1){
+                column = rand.nextInt(World.length-2)+2;
+            }else {
+                column = rand.nextInt(World.length);
+            }
         }while (World[row][column].equals(new EmptyRoom()));
         PlaceRoom(room, row, column);
     }

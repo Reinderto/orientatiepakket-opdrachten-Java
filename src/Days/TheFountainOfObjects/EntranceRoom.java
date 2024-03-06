@@ -18,4 +18,9 @@ public class EntranceRoom extends Room{
     public String OnInteract(String massage, Day39 game) {
         return "You can't leave before enabling the Fountain of Objects";
     }
+
+    @Override
+    public String toString() {
+        return "entrance ";
+    }
 }

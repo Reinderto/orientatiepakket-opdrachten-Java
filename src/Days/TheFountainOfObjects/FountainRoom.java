@@ -30,4 +30,9 @@ public class FountainRoom extends Room{
             return "Invalid interaction maybe try \"enable fountain\"";
         }
     }
+
+    @Override
+    public String toString() {
+        return "Fountain ";
+    }
 }
