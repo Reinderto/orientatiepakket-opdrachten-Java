@@ -9,7 +9,7 @@ public class PitRoom extends Room{
     @Override
     public void OnEnterRoom(Day39 game) {
         game.gameIsActive = false;
-        System.out.println("You fell into a Pit!\nYou lose");
+        System.out.println("You fell into a Pit!\nYou lose.");
     }
 
     @Override

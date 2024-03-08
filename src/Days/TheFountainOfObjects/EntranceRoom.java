@@ -16,7 +16,7 @@ public class EntranceRoom extends Room{
 
     @Override
     public String OnInteract(String massage, Day39 game) {
-        return "You can't leave before enabling the Fountain of Objects";
+        return "You can't leave before enabling the Fountain of Objects.";
     }
 
     @Override

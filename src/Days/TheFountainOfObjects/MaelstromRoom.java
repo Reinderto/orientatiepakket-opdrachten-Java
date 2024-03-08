@@ -1,26 +1,24 @@
 package Days.TheFountainOfObjects;
 
-import java.util.Objects;
-
 public class MaelstromRoom extends Room{
     @Override
     public String RoomDescription() {
-        return "this is a maelstorm";
+        return "this is a maelstrom.";
     }
 
     @Override
     public void OnEnterRoom(Day39 game) {
-        System.out.println("You enter a room with a maelstorm and are swept away by the winds to another room");
+        System.out.println("You enter a room with a maelstrom and are swept away by the winds to another room.");
         int newRow = game.Row;
-        int newCollumn = game.Column;
+        int newColumn = game.Column;
         do{
             newRow = (newRow + game.Size - 1) % game.Size;
-            newCollumn = (newCollumn + game.Size - 2) % game.Size;
-            if(game.Row == newRow && game.Column == newCollumn){
-                newCollumn = (newCollumn + game.Size - 1) % game.Size;
+            newColumn = (newColumn + game.Size - 2) % game.Size;
+            if(game.Row == newRow && game.Column == newColumn){
+                newColumn = (newColumn + game.Size - 1) % game.Size;
             }
-        }while(Objects.equals(game.World[newRow][newCollumn], new EmptyRoom()));
-        game.World[newRow][newCollumn] = new MaelstromRoom();
+        }while(game.World[newRow][newColumn].getClass() != EmptyRoom.class);
+        game.World[newRow][newColumn] = new MaelstromRoom();
         game.World[game.Row][game.Column] = new EmptyRoom();
 
         game.Row = Math.min(game.Row + 1, game.Size - 1);
@@ -36,5 +34,11 @@ public class MaelstromRoom extends Room{
     @Override
     public String toString() {
         return "Maelstrom";
+    }
+
+
+    @Override
+    public void OnShot(Day39 game, int shootRow, int shootColumn) {
+        game.World[shootRow][shootColumn] = new EmptyRoom();
     }
 }

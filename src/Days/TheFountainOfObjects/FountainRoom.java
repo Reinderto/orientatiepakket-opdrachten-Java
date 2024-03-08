@@ -18,7 +18,7 @@ public class FountainRoom extends Room{
     public String OnInteract(String massage, Day39 game) {
         if(Objects.equals(massage, "enable fountain")){
             if(IsEnabled){
-                return "The Fountain of Objects is already enabled";
+                return "The Fountain of Objects is already enabled.";
             }
             else {
                 IsEnabled = true;
@@ -27,12 +27,22 @@ public class FountainRoom extends Room{
             }
         }
         else {
-            return "Invalid interaction maybe try \"enable fountain\"";
+            return "Invalid interaction maybe try \"enable fountain\".";
         }
     }
 
     @Override
     public String toString() {
         return "Fountain ";
+    }
+
+    @Override
+    public void PrintRoomCommands() {
+        if(!IsEnabled){
+            System.out.println("""
+                    enable fountain
+                        enables the fountain of objects.
+                    """);
+        }
     }
 }
